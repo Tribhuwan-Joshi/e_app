@@ -20,12 +20,12 @@ const categorySchema = mongoose.Schema({
 
 const Category = mongoose.model('Category' ,categorySchema );
 
-router.get("/api/categories", async (req, res) => {
+router.get("/", async (req, res) => {
     let categories = await Category.find();
     res.send(categories);
 });
 
-router.post("/api/categories", async (req, res) => {
+router.post("/", async (req, res) => {
    const {error} =  validateData(req.body);
    if(error) res.status(400).send(error.details[0].message)
   const category = new Category({name:req.body.name})
@@ -34,7 +34,7 @@ router.post("/api/categories", async (req, res) => {
   res.send(category);   
 });
 
-router.put("/api/categories/:id", async (req, res) => {
+router.put("/:id", async (req, res) => {
     const {error} =  validateData(req.body);
     if(error) res.status(400).send(error.details[0].message)
   let category = await Category.findById(req.params.id)
@@ -45,12 +45,12 @@ router.put("/api/categories/:id", async (req, res) => {
  }
 });
 
-router.delete("/api/categories/:id", async (req, res) => {
+router.delete("/:id", async (req, res) => {
  const course = await Category.findByIdAndDelete(req.params.id);
 res.send(course);
 });
 
-router.get("/api/categories/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
   const category = await Category.findById(req.params.id);
   if (!category) return res.status(404).send("The category is not found");
   res.send(category);
