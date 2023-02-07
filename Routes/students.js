@@ -1,26 +1,11 @@
 const express = require("express");
-const Joi = require("joi");
-const mongoose = require("mongoose");
+const {Student , validateData} = require('../models/studentModel')
 const app = express();
 app.use(express.json())
 
 
 
-
 const router = express.Router();  // use express.Router() , add all apis - get / put / delete to router . import router in app.js
-// let students = [
-//   { id: 1, name: "Web" },
-//   { id: 2, name: "Mobile" },
-//   { id: 3, name: "Photography" },
-// ];
-
-const studentSchema = mongoose.Schema({
-    name:{type:String , required:true},
-    phone : {type:String , required:true},
-    isEnrolled : {type : Boolean , default : false}
-})
-
-const Student = mongoose.model('Student' ,studentSchema );
 
 router.get("/", async (req, res) => {
     let students = await Student.find();
@@ -57,13 +42,6 @@ router.get("/:id", async (req, res) => {
   res.send(student);
 });
 
-function validateData(student){
-    const schema =Joi.object({
-        name:Joi.string().min(3).max(30).required(),
-        phone : Joi.string().min(10).max(15).required(),
-        isEnrolled : Joi.boolean()
-    })
-    return schema.validate(student)
-}
+
 
 module.exports =router;

@@ -1,6 +1,6 @@
 const express = require("express");
-const Joi = require("joi");
-const mongoose = require("mongoose");
+const {Category , validateData} = require('../models/categoryModel')
+
 const app = express();
 app.use(express.json())
 
@@ -8,17 +8,6 @@ app.use(express.json())
 
 
 const router = express.Router();  // use express.Router() , add all apis - get / put / delete to router . import router in app.js
-// let categories = [
-//   { id: 1, name: "Web" },
-//   { id: 2, name: "Mobile" },
-//   { id: 3, name: "Photography" },
-// ];
-
-const categorySchema = mongoose.Schema({
-    name:{type:String , required:true}
-})
-
-const Category = mongoose.model('Category' ,categorySchema );
 
 router.get("/", async (req, res) => {
     let categories = await Category.find();
@@ -56,11 +45,6 @@ router.get("/:id", async (req, res) => {
   res.send(category);
 });
 
-function validateData(category){
-    const schema =Joi.object({
-        name:Joi.string().min(3).required()
-    })
-    return schema.validate(category)
-}
+
 
 module.exports =router;
