@@ -1,11 +1,11 @@
 const express = require("express");
 const app = express();
-const mogoose  = require('mongoose');
+const mongoose  = require('mongoose');
 const categories = require('./Routes/categories');   // import router with route name
 const students = require('./Routes/students');   // import router with route name
 
 
-mogoose.connect('mongodb://127.0.0.1/eapp').then(()=>console.log("Connection successful")).catch(err=>console.error("Couldn't connect to monogodb",err));
+mongoose.connect('mongodb+srv://tjsm:atlaspasswd@courseapi.z5wgtjg.mongodb.net/?retryWrites=true&w=majority').then(()=>console.log("Connection successful")).catch(err=>console.error("Couldn't connect to monogodb",err));
 
 
 
