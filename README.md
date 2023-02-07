@@ -1,2 +1,9 @@
 # e_app
-An e-learning app created to practice Express and MongoDB
+Backend service for a fake E-learning platform 
+### Stack used
+- #### Javascript
+- #### Express
+- #### NodeJS
+- #### MongoDB Atlas
+
+
