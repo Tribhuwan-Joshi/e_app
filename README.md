@@ -5,5 +5,6 @@ Backend service for a fake E-learning platform
 - #### Express
 - #### NodeJS
 - #### MongoDB Atlas
+- #### Joi - Data validation
 
 
